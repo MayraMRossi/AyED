@@ -25,111 +25,135 @@ Los disparos sobre el eje Y, o sea para x=0, considerarlo en los cuadrantes 1 y 
 */
 //hola probando github
 
+int cuadrante(int, int);
+int puntaje(int, int, int, int, int);
 
-int cuadrante(int,int);
-int puntaje(int,int,int,int,int);
+int main()
+{
+    int nPart = 1, puntos = 0, cuad = 0, flag = true;
+    int nPartGanador = 0, puntosGanador = 0, totCentro = 0;
+    float x = 0, y = 0;
 
-int main(){
-    int nPart=1,puntos=0,cuad=0,flag=true;
-    int nPartGanador=0, puntosGanador=0, totCentro=0;
-    float x=0, y=0;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------" << endl
+         << endl;
+    cout << "Ingrese el numero de participante (un numero negativo para salir): " << endl;
+    cin >> nPart;
 
-    cout<<"----------------------------------------------------------------------------------------------------------------------------------"<<endl<<endl;
-    cout<<"Ingrese el numero de participante (un numero negativo para salir): "<<endl;
-    cin>>nPart;
+    while (nPart > 0)
+    {
 
-    while(nPart>0){
-        
-        int sumCero=0,sumUno=0,sumDos=0,sumTres=0,sumCuatro=0,puntos=0;
+        int sumCero = 0, sumUno = 0, sumDos = 0, sumTres = 0, sumCuatro = 0, puntos = 0;
 
+        for (int i = 1; i <= 5; i++)
+        {
+            cout << "Ingrese la coordenada x del tiro " << i << endl;
+            cin >> x;
+            cout << "Ingrese la coordenada y del tiro " << i << endl;
+            cin >> y;
+            cuad = cuadrante(x, y);
 
-        for (int i=1;i<=5;i++){
-            cout<<"Ingrese la coordenada x del tiro "<<i<<endl;
-            cin>>x;
-            cout<<"Ingrese la coordenada y del tiro "<<i<<endl;
-            cin>>y;   
-            cuad = cuadrante(x,y);
-            
-            
-            if (cuad==0){
+            if (cuad == 0)
+            {
                 sumCero++;
                 totCentro++;
             }
-            if (cuad==1){
+            if (cuad == 1)
+            {
                 sumUno++;
             }
-            if (cuad==2){
+            if (cuad == 2)
+            {
                 sumDos++;
             }
-            if (cuad==3){
+            if (cuad == 3)
+            {
                 sumTres++;
             }
-            if (cuad==4){
+            if (cuad == 4)
+            {
                 sumCuatro++;
             }
         }
 
-        puntos += puntaje(sumCero,sumUno,sumDos,sumTres,sumCuatro);
+        puntos += puntaje(sumCero, sumUno, sumDos, sumTres, sumCuatro);
 
-        cout<<"----------------------------------------------------------------------------------------------------------------------------------"<<endl<<endl;
-        cout<<"El puntaje obtenido por el participante "<<nPart<<" es: "<<puntos<<endl<<endl<<endl;
-        cout<<"Disparo "<<sumUno<<" veces en el cuadrante 1, ";
-        cout<<sumDos<<" veces en el cuadrante 2, ";
-        cout<<sumTres<<" veces en el cuadrante 3, ";
-        cout<<sumCuatro<<" veces en el cuadrante 4 y "<<endl;
-        cout<<sumCero<<" veces en el centro"<<endl<<endl;
-        cout<<"----------------------------------------------------------------------------------------------------------------------------------"<<endl;
-        
-        if(flag==true){
+        cout << "----------------------------------------------------------------------------------------------------------------------------------" << endl
+             << endl;
+        cout << "El puntaje obtenido por el participante " << nPart << " es: " << puntos << endl
+             << endl
+             << endl;
+        cout << "Disparo " << sumUno << " veces en el cuadrante 1, ";
+        cout << sumDos << " veces en el cuadrante 2, ";
+        cout << sumTres << " veces en el cuadrante 3, ";
+        cout << sumCuatro << " veces en el cuadrante 4 y " << endl;
+        cout << sumCero << " veces en el centro" << endl
+             << endl;
+        cout << "----------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+        if (flag == true)
+        {
             nPartGanador = nPart;
             puntosGanador = puntos;
             flag = false;
-        }else{
-            if(puntosGanador<puntos){
+        }
+        else
+        {
+            if (puntosGanador < puntos)
+            {
                 puntosGanador = puntos;
                 nPartGanador = nPart;
             }
             //se considera ganador al primero que obtuvo los puntos
-            
         }
 
-        cout<<"Ingrese el numero de participante (un numero negativo para salir): "<<endl;
-        cin>>nPart;
+        cout << "Ingrese el numero de participante (un numero negativo para salir): " << endl;
+        cin >> nPart;
     }
-    
-    cout<<"******************************************************************"<<endl<<endl;
-    cout<<"Gano el participante "<<nPartGanador<<" con "<<puntosGanador<<" puntos"<<endl<<endl;
-    cout<<"Se anoto en el centro "<<totCentro<<" veces en total "<<endl<<endl;
-    cout<<"******************************************************************"<<endl<<endl;
+
+    cout << "******************************************************************" << endl
+         << endl;
+    cout << "Gano el participante " << nPartGanador << " con " << puntosGanador << " puntos" << endl
+         << endl;
+    cout << "Se anoto en el centro " << totCentro << " veces en total " << endl
+         << endl;
+    cout << "******************************************************************" << endl
+         << endl;
 
     return 0;
 }
 
-
-
-int cuadrante(int x,int y){
-    int cuadrante=0;
-    if (x==0 && y==0){
+int cuadrante(int x, int y)
+{
+    int cuadrante = 0;
+    if (x == 0 && y == 0)
+    {
         cuadrante = 0;
-    }else{
-        if(x>=0 && y>=0){
-        cuadrante = 1;
+    }
+    else
+    {
+        if (x >= 0 && y >= 0)
+        {
+            cuadrante = 1;
         }
-        if(x<0 && y>=0){
+        if (x < 0 && y >= 0)
+        {
             cuadrante = 2;
         }
-        if(x<0 && y<0){
+        if (x < 0 && y < 0)
+        {
             cuadrante = 3;
         }
-        if(x>=0&& y<0){
+        if (x >= 0 && y < 0)
+        {
             cuadrante = 4;
         }
     }
     return cuadrante;
 }
 
-int puntaje (int c0,int c1,int c2,int c3,int c4){
-int puntos = ((c1+c2)*50) + ((c2+c3)*40) + (c0*100);
+int puntaje(int c0, int c1, int c2, int c3, int c4)
+{
+    int puntos = ((c1 + c2) * 50) + ((c2 + c3) * 40) + (c0 * 100);
 
     return puntos;
 }
