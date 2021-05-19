@@ -1,0 +1,51 @@
+REPETICIÓN
+1) Ingresar 10 números por teclado y mostrar sólo los positivos.
+2) Ingresar la cantidad de alumnos de un curso. Ingresar por cada alumno el nombre y dos notas. Por
+cada alumno informar su nombre y el promedio de sus notas.
+3) Informar los primeros n números pares positivos, siendo n un número entero positivo ingresado
+por teclado.
+4) Informar la cantidad de números negativos que hay dentro de 20 números ingresados por teclado.
+5) Calcular e informar la sumatoria de 10 números ingresados por teclado.
+6) Hacer un algoritmo que ingrese por teclado un número entero n y a continuación ingrese n
+números más de los que tendrá que informar su promedio.
+7) Ingresar la cantidad de alumnos de un curso. Ingresar por cada alumno el nombre y una nota. Por
+cada alumno informar su nombre y si está aprobado o desaprobado. Informar también el
+porcentaje de alumnos aprobados y la cantidad de desaprobados.
+8) Dado un número entero positivo entre 1 y 3999 informar su correspondiente número Romano.
+9) Dados 50 números enteros, informar el promedio de los mayores que 100 y la suma de los
+menores que –10.
+10) En un torneo de fútbol participan K equipos. El torneo se juega con el sistema de todos contra
+todos. Por cada partido disputado por un equipo se dispone de la siguiente información :
+a) Nombre del equipo,
+b) Código del resultado ('P'= Perdido, 'E'= Empatado, 'G'= Ganado).
+Se arma un lote de datos con todos los resultados del torneo, agrupados por nombre del
+equipo.
+Desarrollar el programa que imprima:
+Por cada equipo, su nombre y el puntaje total que obtuvo (suma 3 si gana, y 1 si empata).
+11) Dados n y m enteros positivos, informar su producto obtenido por sumas sucesivas.
+12) Dado un número entero positivo informar su factorial.
+13) Hacer un algoritmo que calcule el promedio de números enteros positivos ingresados por teclado
+hasta que se ingrese un cero. Este cero sólo indica el fin de ingreso de datos, no se incluirá en el
+promedio.
+14) Desarrollar un algoritmo que permita ingresar un conjunto de valores, cada uno de los cuales
+representa el sueldo de un empleado (se sabe que un sueldo igual a 0 indica el fin del conjunto), e
+informe:
+a) Cuántos empleados ganan menos de $900
+b) Cuántos ganan $900 o más, pero menos de $1200
+c) Cuántos ganan $1200 o más, pero menos de $2000
+d) Cuántos ganan $2000 o más.
+15) Ingresar edades comprendidas entre 18 y 22, e imprimir cuántas veces se ingresó cada una de estas
+edades. El lote finaliza con una edad igual a cero.
+16) Hacer un algoritmo que calcule e informe el factorial de números positivos ingresados por teclado.
+El lote de números finaliza con cero.
+17) Dado un conjunto de triángulos representados por sus lados lado1, lado2 y lado3 dados como
+datos, determinar e imprimir la cantidad de triángulos equiláteros, isósceles y escalenos. El
+ingreso de datos finaliza cuando un lado es nulo.
+18) Ingresar por teclado el nombre de un alumno, y a continuación la calificación que obtuvo para
+cada materia rendida (hasta ingresar una calificación cero) por cada alumno de los 25 del curso.
+Informar por cada alumno nombre y su promedio.
+19) En un Banco se procesan datos de las cuentas corrientes de los clientes. De cada cuenta se
+conocen: número de cuenta, nombre del cliente y saldo actual. Se pide escribir un algoritmo que
+permita informar por cada cuenta: número y estado (acreedor o deudor). También informar la
+cantidad de cuentas con saldo deudor, con saldo acreedor y con saldo nulo. Para fin de datos
+ingresar un número de cuenta negativo.

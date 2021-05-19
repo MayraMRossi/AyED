@@ -1,0 +1,91 @@
+Array unidimensionales (vectores)
+
+1) Hacer un algoritmo que lea 30 notas las cargue un vector y luego muestre la nota máxima.
+2) Hacer un algoritmo que lea 40 números y los muestre en orden inverso.
+3) Hacer un algoritmo que lea 40 edades de alumnos y muestre por pantalla las edades que superen a
+la edad promedio.
+4) Desarrollar un programa que permita:
+- Cargar un vector de 50 valores enteros
+- Mostrar por pantalla el contenido del vector
+- Obtener el mayor valor entero contenido en el vector y su posición en el mismo
+- Obtener el menor valor entero contenido en el vector y su posición en el mismo.
+Analizar y describir los cambios necesarios para resolver el mismo problema considerando a lo
+sumo 50 valores enteros.
+5) Dado un conjunto desordenado de valores enteros comprendidos entre 1 y 500, sin repetición, que
+finaliza con cero, desarrollar un algoritmo que:
+. Imprima un listado ordenado de aquellos valores enteros que se encuentran en el conjunto
+. Imprima un listado ordenado de aquellos valores enteros que no se encuentran en el conjunto.
+6) Escriba un programa que permita ingresar la tirada de un par de dados 50 veces y muestre una lista
+donde se vea cuántas veces se dio cada uno de los resultados posibles. Por cada tirada se deberán
+ingresar 2 valores, cada uno representa el valor de un dado. El formato de la salida debe ser el
+siguiente:
+2 salió ... veces
+3 salió ... veces
+.
+.
+12 salió ... veces
+7) Dado un número N (<20), y dos vectores A y B de N elementos que contenga valores entre 0..9
+que representan números naturales muy largos
+a) genere e informe un tercer vector SUMA de N+1 elementos que sea el resultante de la suma de
+los dos números.
+b) genere e informe un tercer vector RESTA de N elementos que sea el resultante de la resta de
+los dos números.
+8) Dado un vector de códigos de productos y un vector paralelo de precios correspondiente a los
+productos, se pide:
+a) Informar código y precio de todos los productos ordenados de mayor a menor por precio.
+b) Dado un código de producto informar su precio.
+9) Dado un vector de notas y un vector de números de documentos paralelo al vector de notas,
+informar el dni de los alumnos que tienen la mayor nota y el dni de los alumnos que tienen la menor
+nota.
+10) Dados los legajos y sueldos de los empleados de una empresa (máximo 100 empleados), se pide
+determinar el/los empleados de máximo sueldo
+a) Los números de legajo son números correlativos de 1 a 100
+b) Los números de legajo son números no correlativos de 4 cifras.
+11) Rehacer el ejercicio 8 con un vector de struct.
+12) Rehacer el ejercicio 9 con un vector de struct.
+13) Se tiene un vector de notas (cada elemento tiene nombre del alumnos y nota obtenida)
+correspondientes al primer parcial y otro vector del mismo tipo del anterior con las notas
+correspondientes al segundo parcial, ambos vectores están ordenados alfabéticamente por nombre.
+Se pide hacer un listado ordenado por nombre con la condición obtenida por el alumno en la
+materia, según lo siguiente:
+- Primer y segundo parcial con nota mayor o igual a 8: PROMOCIÓN
+- Primer y segundo parcial con nota mayor o igual a 6: RINDE FINAL
+- Primer o segundo parcial con nota menor a 6: RECURSA
+14) Se tiene un vector de productos (cada elemento tiene código, descripción y stock) y otro vector con
+los productos recibidos de los proveedores (código, cantidad recibida), ambos ordenados por código
+de producto. Se pide actualizar el stock del vector de productos.
+15) Se tiene un vector con las notas de los exámenes rendidos por los alumnos (nombre y nota)
+ordenado por nombre con un elemento por cada examen rendido (un alumno puede haber rendido 1,
+2, ó más exámenes). Se pide generar un vector con un elemento por alumno con el promedio de las
+notas de sus exámenes, ordenado por nombre.
+16) Se tiene un vector de productos donde cada elemento tiene código de rubro, código de producto y
+descripción, ordenado por código de rubro. Se pide generar un vector ordenado por código de rubro
+que contenga el código de rubro y la cantidad de productos de ese rubro.
+17) En un comercio se ingresan los datos de las ventas realizadas en el día. Por cada una se ingresa
+número de factura, código de vendedor que realizó la venta (de 1 a 25) e importe de la misma. El
+lote de datos finaliza con número de factura cero. Se pide desarrollar un algoritmo que:
+- Imprima un listado ordenado por código de vendedor, detallando el importe total de ventas de
+cada uno de ellos
+- Dado un código de vendedor, imprima la cantidad de ventas realizadas por el mismo.
+18) Idem al 17 pero los códigos de vendedor son números de 4 cifras (25 vendedores)
+19) Una empresa que se dedica a la fabricación de equipos e instrumentos médicos desea controlar las
+ventas que realizan sus visitadores médicos. Cuenta con 10 visitadores médicos y cuenta también
+con casi 400 productos hasta el momento. Para ello se tienen los siguientes datos de cada producto
+(estos datos se ingresan por teclado y finalizan cuando se ingresa un Cero en Número de Producto):
+− Número de Producto (entre 3.000 y 15.000).
+− Descripción de Producto (30 caracteres)
+− Cantidad de unidades en Stock (entre 1 y 2000).
+− Precio de Producto (float, mayor a 0).
+− Porcentaje de comisión por su venta (float, entre 5 y 20 %).
+Además cuenta con los datos de las ventas que realizan sus 10 visitadores médicos que son los siguientes
+(estos datos se ingresan por teclado y finalizan cuando se ingresa un Cero en Número de Visitador):
+− Número de Visitador Médico (entre 1 y 10).
+− Número de Producto (entre 3.000 y 15.000).
+− Cantidad de unidades vendidas.
+NOTA: Rechazar los pedidos de aquellos productos cuyo stock es inferior al pedido.
+Determinar e informar:
+a) Informar el Stock de todos los productos luego de procesar las ventas de sus visitadores médicos.
+b) Informar las comisiones que van a recibir cada uno de sus visitadores luego de haber procesado todas las
+ventas.
+c) Informar el total de la facturación que realizó la empresa de cada uno de los productos vendidos luego de
+haber procesado todas las ventas.

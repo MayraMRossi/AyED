@@ -1,0 +1,42 @@
+Ejercicios de Estructuras de Decisión
+1) Dados dos valores que se ingresan por teclado, mostrar por pantalla el menor de ellos.
+2) Dado un número que se ingresa por teclado, informar si es par o impar.
+3) Se ingresan dos valores por teclado si el primero es mayor al segundo, informar la resta de los
+valores, en caso contrario la suma.
+4) Confeccionar un programa que solicite dos valores reales positivos, expresados en cm. El
+primero corresponde a la base y el segundo a la altura de un triángulo, se desea calcular el
+valor de la superficie. Si la superficie calculada es menor a 100 cm2
+, expresarla en milímetros
+cuadrados, caso contrario en metros cuadrados. Informar resultado con unidades. ( 1 m2
+=
+10.000 cm2
+)
+5) Dados tres valores que se ingresan por teclado, mostrar por pantalla el valor mayor.
+6) Escribir un algoritmo que lea dos fechas (día, mes y año) e informe cual es la más reciente.
+7) Dado tres valores que representan las longitudes de segmentos determinar e imprimir una
+leyenda según sea: “Forman triangulo” o “No forman triangulo”.
+8) Dados tres valores que representan los lados de un triángulo, informar si el mismo es
+equilátero, isósceles o escaleno.
+9) Dado un número de cinco cifras informar si es capicúa.
+10) Hacer un algoritmo que ingresando por teclado el mes (1 a 12) y el año (4 dígitos), informe la
+cantidad de días que tiene el mes.
+11) Un negocio vende distintos artículos identificados por un código, según se muestra:
+.código 1; 10 ; 100: l0 pesos la unidad
+.código 2; 22; 222: 7 pesos la unidad. La caja de 10 unidades vale 65 pesos.
+.código 3; 33: 3 pesos la unidad. Si la compra es por más de 10 unidades se hace un
+descuento del 10% sobre el total.
+.código 4; 44: 2 peso la unidad.
+Confeccionar un programa que ingrese como dato el código de un artículo y la cantidad a
+comprar y se informe el importe de la compra:
+ ARTÍCULO xxxxx CANTIDAD xxxx IMPORTE A PAGAR $ xxxx.xx 
+12) Confeccionar un programa que pueda determinar el importe a pagar por una prestación
+médica según su código. Los importes se cobran según la siguiente tabla :
+Código Importe $
+A 200
+D 400
+ F 600
+M 1500
+T 150 0
+Por cada prestación se debe ingresar el número de historia del paciente y el código de la
+prestación. Se debe emitir un ticket para cada uno, con el número de la historia, el código y el
+importe a pagar. 

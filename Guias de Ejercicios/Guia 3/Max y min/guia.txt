@@ -1,0 +1,60 @@
+MÁXIMOS Y MÍNIMOS
+1) Dados 50 valores distintos que se ingresan por teclado, mostrar el menor.
+2) Dados 50 valores distintos que se ingresan por teclado, mostrar en qué posición se ingresó el
+mayor.
+3) Dados 50 valores que se ingresan por teclado, mostrar el mayor y la cantidad de veces que fue
+ingresado
+4) Dados 50 valores distintos que se ingresan por teclado, mostrar los dos mayores.
+5) Dado un conjunto de valores, que finaliza con un valor nulo, determinar e imprimir (si hubo
+valores):
+a) El valor máximo negativo
+b) El valor mínimo positivo
+d) El promedio de todos los valores.
+
+6) Dado un conjunto de Nombres y Fechas de nacimientos (AAAAMMDD), que finaliza con un
+Nombre = ‘FIN’, informar el nombre de la persona con mayor edad y el de la más joven.
+7) Un jugador arroja 5 dados y se registra como puntaje la suma de los dos valores más altos. Dada
+una serie de tiros, que finaliza al ingresar ‘N’ ante la consulta “Continúa? S/N”, determinar e
+imprimir la cantidad de tiros, el máximo puntaje obtenido, y el puntaje promedio.
+8) El gobierno de la Ciudad de Buenos Aires realiza una encuesta en casas de familia. De cada
+familia encuestada se conoce: domicilio, tipo de vivienda (‘C’: casa, ‘D’: departamento) y
+cantidad de integrantes.
+De cada integrante de la familia se conoce: nombre y apellido, edad, sexo (‘F’, ‘M’), nivel de
+estudios alcanzados (‘N’: no posee, ‘P’: primario, ‘S’: secundario, ‘T’: terciario), y un indicador
+(‘I’: Incompleto, ‘C’: Completo) referente al ítem anterior.
+Se identifica el fin de ingreso de datos con un cero como cantidad de integrantes.
+Informar:
+a) La cantidad de encuestados que han completado los estudios primarios,
+b) el porcentaje de analfabetismo en la ciudad (se consideran analfabetos a los mayores de
+10 años que no poseen estudios),
+c) el domicilio de la familia con mayor cantidad de integrantes que viven en un
+departamento,
+d) la edad promedio de todos los habitantes de la ciudad,
+e) la mayor edad promedio de las familias,
+f) la cantidad de encuestados con estudios secundarios incompletos,
+g) el porcentaje de encuestados de sexo femenino con estudios terciarios completos.
+9) Un buque de carga traslada contenedores a tres diferentes puertos del país. Los puertos se
+identifican con los números 1, 2 y 3.
+De cada contenedor que el buque traslade se registran los siguientes datos:
+- Identificación del contenedor
+- Peso del contenedor en kg
+- Puerto de arribo (un valor de 1 a 3).
+El ingreso de datos finaliza con la identificación de un contenedor igual a cero.
+Se pide calcular e informar:
+a) El peso total que el buque debe trasladar.
+b) La identificación del contenedor de mayor peso.
+c) La cantidad de contenedores que debe trasladar a cada puerto
+10) Una compañía aérea desea emitir un listado con los movimientos mensuales de sus M vuelos al
+exterior.
+Para ello cuenta con la siguiente información:
+De cada vuelo realizado el número de vuelo, destino, y cantidad de asientos.
+De cada pasajero el número de pasaporte y el importe que abonó por el pasaje en dólares.
+La información de los pasajeros de cada vuelo finaliza con un número de pasaporte igual a cero.
+Se pide emitir el siguiente listado:
+Nro. de Vuelo ………. Destino: ………..
+Nro. de Pasaporte Importe en u$s
+…………. ………….
+ …………. ………….
+ Total recaudado del vuelo: ………
+Cantidad de asientos libres: ………
+Número de vuelo que más recaudó: ……..
