@@ -120,29 +120,3 @@ return 0;
 
 }
 */
-
-//EJERCICIO 4 elabore un programa que calcule la edad de una persona
-//prueba
-
-#include <iostream>
-
-using namespace std;
-
-main()
-{
-
-    float operacion = 0, ano = 0, mes = 0;
-    cout << "Ingrese el a�o de nacimiento";
-    cin >> ano;
-    cout << "ingrese el mes de nacimiento en numero/";
-    cin >> mes;
-    if (mes >= 4)
-    {
-        operacion = 2021 - ano - 1;
-    }
-    else
-        operacion = 2021 - ano;
-
-    cout << "Tu edad es: " << operacion;
-    return 0;
-}
