@@ -19,7 +19,6 @@ return 0;
 }
 */
 
-
 //EJERCICIO SUMA , resta y multiplicacion de 3 num positivos
 
 /*
@@ -129,24 +128,21 @@ return 0;
 
 using namespace std;
 
-main(){
+main()
+{
 
-    float operacion = 0,ano=0, mes=0;
-    cout<<"Ingrese el a�o de nacimiento";
-    cin>>ano;
-    cout<<"ingrese el mes de nacimiento en numero/";
-    cin>>mes;
-    if(mes>=4){
-       operacion = 2021-ano-1;
-    }else operacion = 2021-ano;
+    float operacion = 0, ano = 0, mes = 0;
+    cout << "Ingrese el a�o de nacimiento";
+    cin >> ano;
+    cout << "ingrese el mes de nacimiento en numero/";
+    cin >> mes;
+    if (mes >= 4)
+    {
+        operacion = 2021 - ano - 1;
+    }
+    else
+        operacion = 2021 - ano;
 
-    cout<<"Tu edad es: "<<operacion;
+    cout << "Tu edad es: " << operacion;
     return 0;
-
 }
-
-
-
-
-
-
