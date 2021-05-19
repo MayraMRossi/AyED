@@ -23,7 +23,7 @@ c. Calcular y mostrar la cantidad total de disparos en el centro (de todos los p
 Los disparos sobre el eje X, o sea para y=0, considerarlo en los cuadrantes 1 y 2
 Los disparos sobre el eje Y, o sea para x=0, considerarlo en los cuadrantes 1 y 4
 */
-//hola probando github
+
 
 int cuadrante(int, int);
 int puntaje(int, int, int, int, int);
