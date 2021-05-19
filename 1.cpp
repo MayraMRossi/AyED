@@ -123,7 +123,7 @@ return 0;
 */
 
 //EJERCICIO 4 elabore un programa que calcule la edad de una persona
-
+//prueba
 
 #include <iostream>
 
@@ -132,7 +132,7 @@ using namespace std;
 main(){
 
     float operacion = 0,ano=0, mes=0;
-    cout<<"Ingrese el año de nacimiento";
+    cout<<"Ingrese el aï¿½o de nacimiento";
     cin>>ano;
     cout<<"ingrese el mes de nacimiento en numero/";
     cin>>mes;
