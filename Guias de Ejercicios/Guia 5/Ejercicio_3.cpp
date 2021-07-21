@@ -7,10 +7,10 @@ void ingresoEdades(int);
 
 
 main(){
-
-    ingresoEdades();
-    mostrarEdadesProm();
-    mos
+    int a;
+    ingresoEdades(a);
+    mostrarEdadesProm(a);
+   
 
     return 0;
 }
