@@ -1,27 +1,4 @@
-#include <iostream>
-#include <stdio.h>
-using namespace std;
 
-struct rep {
-    unsigned dni;
-    char nombre[40];
-    string patente;
-    int zona;
-    int vehiculo;
-};
-
-void inicializar(int m[][4], unsigned f, unsigned c);
-int validarZona();
-void cargarRep(int zonas[][4], unsigned f, unsigned c);
-void mostrarZonas(int zonas[][4], unsigned f, unsigned c);
-
-
-int main()
-{
-    int zonas [14][4];
-    inicializar(zonas, 14, 4);
-    cargarRep(zonas, 14, 4);
-    mostrarZonas(zonas, 14, 4);
     /*mostrarCantXZona (zonas,14,4);
     transpVacio (zonas,14,4);
     repXZona (zonas,14,4);*/
@@ -34,7 +11,7 @@ void inicializar(int m[][4], unsigned f, unsigned c)
 {
     for(int i=0; i<f ;i++)
     {
-        for(int j=0; j<c ;j++)
+        for(int j=0; i<j ;j++)
             m[i][j]=0;
     }
 }
@@ -90,13 +67,12 @@ int validarZona()
     return z;
 }
 
-void mostrarZonas(int zonas[][4], unsigned f, unsigned c)
+void mostrarZonas(int zonas, unsigned f, unsigned c)
 {
     for(int i=0; i<f ;i++)
     {
-        for(int j=0; j<c ;j++)
-            cout<<zonas[i][j];
-        cout<<endl;
+        for(int j=0; i<j ;j++)
+            cout<<zonas[i][j]<<endl;
     }
 }
 
