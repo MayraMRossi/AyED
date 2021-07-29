@@ -1,0 +1,40 @@
+
+Parte 1:
+El objetivo de esta primera parte es poner en práctica el concepto de Estructuras de control de flujo de un
+programa (secuencia, análisis de caso y repetición), como asimismo trabajar con tipos de datos simples y
+estructurados (arrays), con expresiones lógicas, asignación interna y externa. También usaremos flujos
+conocidos como “Archivos” y patrones algorítmicos de ordenamiento.
+Vamos a desarrollar una aplicación para un sistema de entrega de productos a domicilio.
+Para la organización de las entregas la empresa divide la ciudad en 14 zonas, numeradas del 1 al 14.
+Incorporación de repartidores
+Ingreso de personas que formarán parte del staff de repartidores de la empresa.
+Los repartidores pueden realizar su tarea utilizando moto, automóvil, camioneta o camión. Cada repartidor
+posee solo un medio de transporte.
+Se admite un máximo de 20 repartidores con cada medio de transporte por cada zona.
+Al momento de ingresar los datos del repartidor, rechazar su incorporación si ya se completó el cupo para el
+tipo de medio de transporte en esa zona.
+La finalización del ingreso de datos de los repartidores por teclado queda a criterio del grupo.
+Se pide:
+1) Generar los archivos “RepMoto.dat”, “RepAuto.dat” “RepCamioneta.dat” y “RpeCamion.dat” con los
+repartidores incorporados según su medio de transporte. Cada registro de cada uno de los archivos
+debe tener: número de documento del repartidor, nombre y apellido, patente del vehículo y código
+de zona en la que realizará su actividad (1 a 14).
+Estos archivos deben estar ordenados de menor a mayor por número de documento del repartidor.
+2) Informar por cada zona la cantidad de repartidores con cada medio de transporte.
+3) Informar, si hubo, qué medio/s de transporte no habrá disponibles, por no haber ningún inscripto,
+para la realización de entregas (sin importar la zona).
+4) Informar la zona en la que hay más repartidores inscriptos (sin importar el medio de transporte).
+Para realizar los puntos 2, 3 y 4 utilizar estructuras de datos en memoria, no hacerlo con los archivos
+generados.
+Entrega TP
+Se debe entregar un .rar o un .zip que debe llevar el siguiente nombre: K1021-XXXX-PARTE1 Donde XXXX será
+el nombre que los miembros del equipo le asignen al grupo.
+Se debe respetar la siguiente estructura de archivos:
+El archivo: K1021-XXXX-PARTE1 (.rar o .zip) corresponderá a una carpeta con los siguientes archivos:
+- Carátula indicando los integrantes del grupo.
+- Instructivo (.pdf)
+- Código (.cpp)
+- Archivos adicionales
+El instructivo comprende:
+- Un instructivo de uso para el programa junto con capturas del programa funcionando.
+- La justificación de cualquier decisión tomada a la hora de resolver el problema.  
