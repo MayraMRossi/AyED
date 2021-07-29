@@ -178,7 +178,7 @@ int validarZona()
     int z;
     do
     {
-        cout << "Zona: ";
+        cout << "Zona: (1 a "<<ZN<<")";
         cin >> z;
     } while (z < 1 || z > ZN);
 
