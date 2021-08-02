@@ -20,16 +20,17 @@ void cargarRep(int zonas[][4], unsigned f, unsigned c);
 void mostrarCantXZona(int zonas[][4], unsigned f, unsigned c, int repTotal[]);
 void transpVacio(int zonas[][4], unsigned f, unsigned c);
 void repXZona(int repTotal[], unsigned t);
-int cant_de_rep_por_veh(int zonas[][4], unsigned f, unsigned c, unsigned vehiculo);
-void pasar_a_vector(int zonas[][4], unsigned f, unsigned c);
+int cantXVeh(int zonas[][4], unsigned f, unsigned c, unsigned vehiculo);
+void pasarAVector(int zonas[][4], unsigned f, unsigned c);
 void ordenar(rep v[], unsigned t);
-void cargar_ordenado(rep vecOrdenado[], unsigned t, string vehiculo);
+void cargarOrdenado(rep vecOrdenado[], unsigned t, string vehiculo);
 void mostrarArchivos();
 
 int main()
 {
     int zonas[ZN][4];
     int repTotal[ZN];
+    
     inicializar(zonas, ZN, 4);
     inicializarVector(repTotal, ZN);
     cargarRep(zonas, ZN, 4);
@@ -39,9 +40,9 @@ int main()
     transpVacio(zonas, ZN, 4);
     cout << endl;
     repXZona(repTotal, ZN);
-    cout << endl;
-    pasar_a_vector(zonas, ZN, 4);
-
+    cout<<endl;
+    pasarAVector(zonas, ZN, 4);
+    
     return 0;
 }
 
@@ -89,15 +90,15 @@ void cargarRep(int zonas[][4], unsigned f, unsigned c)
                 cin >> repartidor.patente;
 
                 repartidor.zona = validarZona();
-                cout << endl;
+                cout<<endl;
 
-                if (zonas[repartidor.zona - 1][0] <= 20)
+                if(zonas[repartidor.zona-1][0]<=2)
                 {
                     fwrite(&repartidor, sizeof(rep), 1, f);
                     zonas[repartidor.zona - 1][0]++;
                 }
                 else
-                    cout << "Se alcanzo el numero maximo de repartidores por zona y vehiculo" << endl;
+                    cout<<"Se alcanzo el numero maximo de repartidores por zona y vehiculo"<<endl;
             }
             fclose(f);
         }
@@ -119,15 +120,15 @@ void cargarRep(int zonas[][4], unsigned f, unsigned c)
                 cin >> repartidor.patente;
 
                 repartidor.zona = validarZona();
-                cout << endl;
+                cout<<endl;
 
-                if (zonas[repartidor.zona - 1][1] <= 20)
+                if(zonas[repartidor.zona-1][1]<=20)
                 {
                     fwrite(&repartidor, sizeof(rep), 1, f);
                     zonas[repartidor.zona - 1][1]++;
                 }
                 else
-                    cout << "Se alcanzo el numero maximo de repartidores por zona y vehiculo";
+                    cout<<"Se alcanzo el numero maximo de repartidores por zona y vehiculo";
             }
             fclose(f);
         }
@@ -149,15 +150,15 @@ void cargarRep(int zonas[][4], unsigned f, unsigned c)
                 cin >> repartidor.patente;
 
                 repartidor.zona = validarZona();
-                cout << endl;
+                cout<<endl;
 
-                if (zonas[repartidor.zona - 1][2] <= 20)
+                if(zonas[repartidor.zona-1][2]<=20)
                 {
                     fwrite(&repartidor, sizeof(rep), 1, f);
                     zonas[repartidor.zona - 1][2]++;
                 }
                 else
-                    cout << "Se alcanzo el numero maximo de repartidores por zona y vehiculo";
+                    cout<<"Se alcanzo el numero maximo de repartidores por zona y vehiculo";
             }
             fclose(f);
         }
@@ -179,15 +180,15 @@ void cargarRep(int zonas[][4], unsigned f, unsigned c)
                 cin >> repartidor.patente;
 
                 repartidor.zona = validarZona();
-                cout << endl;
-
-                if (zonas[repartidor.zona - 1][2] <= 20)
+                cout<<endl;
+                
+                if(zonas[repartidor.zona-1][2]<=20)
                 {
                     fwrite(&repartidor, sizeof(rep), 1, f);
                     zonas[repartidor.zona - 1][3]++;
                 }
                 else
-                    cout << "Se alcanzo el numero maximo de repartidores por zona y vehiculo";
+                    cout<<"Se alcanzo el numero maximo de repartidores por zona y vehiculo";
             }
             fclose(f);
         }
@@ -207,7 +208,7 @@ int validarZona()
     int z;
     do
     {
-        cout << "Zona: (1 a " << ZN << ")";
+        cout << "Zona: (1 a "<<ZN<<")";
         cin >> z;
     } while (z < 1 || z > ZN);
 
@@ -274,9 +275,9 @@ void transpVacio(int zonas[][4], unsigned f, unsigned c)
                 break;
             }
         }
-        if (flag)
-            cout << "Todos los vehiculos estan disponibles" << endl;
     }
+    if(flag)
+        cout << "Todos los vehiculos estan disponibles" << endl;
 }
 
 void repXZona(int repTotal[], unsigned t)
@@ -307,96 +308,92 @@ void repXZona(int repTotal[], unsigned t)
     }
 }
 
-int cant_de_rep_por_veh(int zonas[][4], unsigned f, unsigned c, unsigned vehiculo) //dice la cantidad de repartidores dado el vehiculo
+int cantXVeh(int zonas[][4], unsigned f, unsigned c, unsigned vehiculo) //dice la cantidad de repartidores dado el vehiculo
 {
     int cant[4];
     inicializarVector(cant, 4);
-    for (int j = 0; j < c; j++)
+    for(int j=0; j<c; j++)
     {
-        for (int i = 0; i < f; i++)
+        for(int i=0; i<f; i++)
         {
-            cant[j] += zonas[i][j];
+            cant[j]+=zonas[i][j];
         }
     }
     return cant[vehiculo];
 }
 
-void pasar_a_vector(int zonas[][4], unsigned f, unsigned c) //pasa los datos del archivo a un vector con n posiciones, siendo n la cantidad de repartidores por zona (de todos los vehiculos)
+void pasarAVector(int zonas[][4], unsigned f, unsigned c) //pasa los datos del archivo a un vector con n posiciones, siendo n la cantidad de repartidores por zona (de todos los vehiculos)
 {
-    for (int nro_veh = 0; nro_veh < c; nro_veh++)
+    for(int nro_veh=0; nro_veh<c; nro_veh++)
     {
-
+        
         string vehiculo, nombreCompleto;
-        switch (nro_veh)
+        switch(nro_veh)
         {
-        case 0:
-            vehiculo = "Auto";
-            break;
-        case 1:
-            vehiculo = "Moto";
-            break;
-        case 2:
-            vehiculo = "Camioneta";
-            break;
-        case 3:
-            vehiculo = "Camion";
-            break;
+            case 0: vehiculo="Auto"; break;
+            case 1: vehiculo="Moto"; break;
+            case 2: vehiculo="Camioneta"; break;
+            case 3: vehiculo="Camion"; break;
         }
         nombreCompleto.append("Rep");
         nombreCompleto.append(vehiculo);
         nombreCompleto.append(".dat");
-        int cant = cant_de_rep_por_veh(zonas, f, c, nro_veh);
-        rep vecOrdenado[cant];
-        FILE *f = fopen(nombreCompleto.c_str(), "rb");
-        if (f == NULL)
-            cout << "ERROR al leer archivo" << endl;
-        else
+        int cant = cantXVeh(zonas, f, c, nro_veh);
+        if(cant!=0)
         {
-            for (int i = 0; i < cant; i++)
+            rep vecOrdenado[cant];
+            FILE*f = fopen(nombreCompleto.c_str(), "rb");
+            if(f==NULL)
+                cout<<"ERROR al leer archivo"<<endl;
+            else
             {
-                fread(&vecOrdenado[i], sizeof(rep), 1, f);
-            }
+                for(int i=0; i<cant; i++)
+                {
+                    fread(&vecOrdenado[i], sizeof(rep), 1, f);
+                }
+            } 
+            fclose(f);
+            ordenar(vecOrdenado, cant);
+            cargarOrdenado(vecOrdenado, cant, vehiculo);
         }
-        fclose(f);
-        ordenar(vecOrdenado, cant);
-        cargar_ordenado(vecOrdenado, cant, vehiculo);
     }
 }
 
 void ordenar(rep v[], unsigned t) //ordena el vector
 {
-    int i = 1, j;
+    int i=1, j;
     rep aux;
     bool cambio;
     do
     {
-        cambio = false;
-        for (j = 0; j < t - i; j++)
+        cambio=false;
+        for(j=0; j<t-i; j++)
         {
-            if (v[j].dni > v[j + 1].dni)
+            if(v[j].dni>v[j+1].dni)
             {
-                aux = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = aux;
-                cambio = true;
+                aux=v[j];
+                v[j]=v[j+1];
+                v[j+1]=aux;
+                cambio=true;
             }
         }
         i++;
-    } while (i < t && cambio);
+    } while (i<t && cambio);
+    
 }
 
-void cargar_ordenado(rep vecOrdenado[], unsigned t, string vehiculo) //carga el vector ordenado devuelta al archivo con un "wb"
+void cargarOrdenado(rep vecOrdenado[], unsigned t, string vehiculo) //carga el vector ordenado devuelta al archivo con un "wb"
 {
     string nombreCompleto;
     nombreCompleto.append("Rep");
     nombreCompleto.append(vehiculo);
     nombreCompleto.append(".dat");
-    FILE *f = fopen(nombreCompleto.c_str(), "wb");
-    if (f == NULL)
-        cout << "ERROR al escribir el archivo" << endl;
+    FILE*f = fopen(nombreCompleto.c_str(), "wb");
+    if(f==NULL)
+        cout<<"ERROR al escribir el archivo"<<endl;
     else
     {
-        for (int i = 0; i < t; i++)
+        for(int i=0; i<t; i++)
         {
             fwrite(&vecOrdenado[i], sizeof(rep), 1, f);
         }
@@ -406,46 +403,38 @@ void cargar_ordenado(rep vecOrdenado[], unsigned t, string vehiculo) //carga el 
 
 void mostrarArchivos()
 {
-    for (int cant = 0; cant < 4; cant++)
+    for(int cant=0; cant<4; cant++)
     {
         rep repartidor;
         string vehiculo, nombreCompleto;
-        int i = 0;
-        switch (cant)
+        int i=0;
+        switch(cant)
         {
-        case 0:
-            vehiculo = "Auto";
-            break;
-        case 1:
-            vehiculo = "Moto";
-            break;
-        case 2:
-            vehiculo = "Camioneta";
-            break;
-        case 3:
-            vehiculo = "Camion";
-            break;
+            case 0: vehiculo="Auto"; break;
+            case 1: vehiculo="Moto"; break;
+            case 2: vehiculo="Camioneta"; break;
+            case 3: vehiculo="Camion"; break;
         }
-        nombreCompleto.append("Rep");
-        nombreCompleto.append(vehiculo);
-        nombreCompleto.append(".dat");
-        FILE *f = fopen(nombreCompleto.c_str(), "rb");
-        if (f == NULL)
-            cout << "ERROR al leer archivo" << endl;
+            nombreCompleto.append("Rep");
+            nombreCompleto.append(vehiculo);
+            nombreCompleto.append(".dat");
+        FILE*f = fopen(nombreCompleto.c_str(), "rb");
+        if(f==NULL)
+            cout<<"ERROR al leer archivo"<<endl;
         else
         {
             fread(&repartidor, sizeof(rep), 1, f);
-            cout << vehiculo << ": " << endl;
-            while (!feof(f))
+            cout<<vehiculo<<": "<<endl;
+            while(!feof(f))
             {
-                cout << "  DNI: " << repartidor.dni << endl;
-                cout << "  Nombre: " << repartidor.nombre << endl;
-                cout << "  Patente: " << repartidor.patente << endl;
-                cout << "  Zona: " << repartidor.zona << endl;
-                cout << endl;
+                cout<<"  DNI: "<<repartidor.dni<<endl;
+                cout<<"  Nombre: "<<repartidor.nombre<<endl;
+                cout<<"  Patente: "<<repartidor.patente<<endl;
+                cout<<"  Zona: "<<repartidor.zona<<endl;
+                cout<<endl;
                 fread(&repartidor, sizeof(rep), 1, f);
             }
-            cout << endl;
+            cout<<endl;
         }
         fclose(f);
     }
