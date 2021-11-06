@@ -283,6 +283,7 @@ void transpVacio(int zonas[][4], unsigned f, unsigned c)
 void repXZona(int repTotal[], unsigned t)
 {
     int mayorRep, mayorZona[14], pos = 0;
+    
     for (int i = 0; i < t; i++)
     {
         if (i == 0 || repTotal[i] > mayorRep)
