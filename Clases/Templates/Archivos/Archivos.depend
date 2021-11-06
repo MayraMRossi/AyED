@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1534364730 source:c:\users\gabriela\documents\académicos\utn\2018\ayed\codificación\archivos\archivo.cpp
+	<iostream>
+	<stdio.h>
+	"funcionesArchhivos.h"
+
+1534364704 c:\users\gabriela\documents\académicos\utn\2018\ayed\codificación\archivos\funcionesarchhivos.h
+

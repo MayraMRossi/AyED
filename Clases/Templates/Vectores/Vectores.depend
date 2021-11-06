@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1459537762 source:c:\users\gabriela\desktop\ayed k1061\vectores\main.cpp
+	<iostream>
+	<string.h>
+	"funcionesVect.h"
+
+1459537657 c:\users\gabriela\desktop\ayed k1061\vectores\funcionesvect.h
+	<iostream>
+
+1467762426 source:c:\users\gabriela\documents\académicos\utn\2016\ayed 1c\ayed k1061\vectores\main.cpp
+	<iostream>
+	<string.h>
+	"funcionesVect.h"
+
+1467762171 c:\users\gabriela\documents\académicos\utn\2016\ayed 1c\ayed k1061\vectores\funcionesvect.h
+	<iostream>
+
+1467763145 source:c:\users\gabriela\documents\académicos\utn\2016\ayed 1021\programas\vectores\main.cpp
+	<iostream>
+	<string.h>
+	"funcionesVect.h"
+
+1467763123 c:\users\gabriela\documents\académicos\utn\2016\ayed 1021\programas\vectores\funcionesvect.h
+	<iostream>
+
+1467763145 source:c:\users\gabriela\documents\académicos\utn\2017\ayed\codificación\vectores\main.cpp
+	<iostream>
+	<string.h>
+	"funcionesVect.h"
+
+1467763123 c:\users\gabriela\documents\académicos\utn\2017\ayed\codificación\vectores\funcionesvect.h
+	<iostream>
+
+1467763145 source:c:\users\gabriela\documents\académicos\utn\2018\ayed\codificación\vectores\main.cpp
+	<iostream>
+	<string.h>
+	"funcionesVect.h"
+
+1467763123 c:\users\gabriela\documents\académicos\utn\2018\ayed\codificación\vectores\funcionesvect.h
+	<iostream>
+
