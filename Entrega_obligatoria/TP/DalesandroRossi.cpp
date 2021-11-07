@@ -28,7 +28,7 @@ struct Arch_rep
     char nombre[40];
     char patente[10];
     int zona;
-}a
+}
 
 int indicar_vehiculo(float vol);
 int validar_zona();
