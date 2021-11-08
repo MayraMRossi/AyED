@@ -1,10 +1,12 @@
 #include <iostream>
+#include <string.h>
+#include <stdio.h>
 using namespace std;
 
 struct Pedido
 {
     string domicilio;
-    int zona_entrega;
+    int zona;
     float volumen;
     float importe;
     int cod_comercio;
@@ -39,7 +41,7 @@ struct Repartidor
 
 struct NodoSubLista
 {
-    Pedidos info;
+    Pedido info;
     NodoSubLista *sig;
 };
 
@@ -52,25 +54,27 @@ struct NodoLista
 
 int indicar_vehiculo(float vol);
 int validar_zona();
-void cargar_pedidos(int m[][4]);
+void cargar_pedidos(Cola m[][4]);
 void inicializar(Cola m[][4], unsigned f, unsigned c);
 void encolar(NodoCola *&pri, NodoCola *&ult, Pedido ped);
 Pedido desencolar(NodoCola *&pri, NodoCola *&ult);
 bool buscar_repartidor(int zona, int nro_vehiculo);
-bool leer_archivo(FILE*, int zona);
-void asignar_pedidos(Cola m[][4]);
+bool leer_archivo(FILE*f, int zona);
+void asignar_pedidos(Cola m[][4], NodoLista *&lista);
 Repartidor buscar_dni(int dni);
 Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo);
 void insertar(NodoSubLista* &lista, Pedido ped);
-Nodo *buscarInsertar(NodoSubLista* &lista, Pedido ped);
+NodoLista *buscarInsertar(NodoLista* &lista, int dni);
 string traducir_nro_veh(int nro_vehiculo);
 void mostrar_lista(NodoLista*lista);
 
 int main()
 {
-    Cola*repartidores[14][4];
+    Cola repartidores[14][4];
     NodoLista* lista_repartidores = NULL;
-    inicializar(repartidores, 14, 4);
+    inicializar(repartidores, 14, 4); // ERROR, termina la ejecucion por algun motivo desconocido
+   
+    
 
     // MENU
     int opcion;
@@ -78,7 +82,7 @@ int main()
     do
     {
         cout<<"****************************************************************MENU****************************************************************"<<endl<<endl;
-        cout<<"Seleccione una opcion: "<<endl<<"1: Cargar pedido."<<endl<<"2: Asignar Pedido."<<endl<<"3: Mostrar pedidos. "<<"4: Salir."<<endl;
+        cout<<"Seleccione una opcion: "<<endl<<"1: Cargar pedido."<<endl<<"2: Asignar Pedido."<<endl<<"3: Mostrar pedidos. "<<endl<<"4: Salir."<<endl;
         cin>>opcion;
         switch(opcion)
         {
@@ -86,14 +90,15 @@ int main()
                 cargar_pedidos(repartidores);
                 break;
             case 2: 
-                asignar_pedidos(repartidores);
+                asignar_pedidos(repartidores, lista_repartidores);
                 break;
             case 3: 
-                mostrar_lista(repartidores);
+                mostrar_lista(lista_repartidores);
                 break;
             case 4:
                 cout<<"Salir";
-            default
+                break;
+            default:
                 cout<<"La opcion no existe. Volver a ingresar: "<<endl;
         }
         cout<<endl<<endl;
@@ -105,14 +110,17 @@ int main()
 
 int indicar_vehiculo(float vol) //Asigna u nro del 0 al 3 en base al volumen para determinar el tipo de vehiculo
 {
-    if(vol<0,005)
-        return 0; // Moto
-    else if(vol<0,02)
-        return 1; // Auto
+    int n;
+    if(vol<0.005)
+        n = 0; // Moto
+    else if(vol<0.02)
+        n = 1; // Auto
     else if(vol<8)
-        return 2; // Camioneta
+        n = 2; // Camioneta
     else 
-        return 3; // Camion 
+        n = 3; // Camion 
+
+    return n;
 }
 
 void inicializar(Cola m[][4], unsigned f, unsigned c)
@@ -194,7 +202,7 @@ NodoLista *buscarInsertar(NodoLista* &lista, int dni)
     if(l == NULL || l->info!=dni) 
     {
         NodoLista *n = new NodoLista;
-        n->info = ped;
+        n->info = dni;
         n->sig = l;
         if(l != lista)
             ant->sig = n;
@@ -206,7 +214,7 @@ NodoLista *buscarInsertar(NodoLista* &lista, int dni)
         return l;
 }
 
-void cargar_pedidos(int m[][4])
+void cargar_pedidos(Cola m[][4])
 {
     Pedido p;
     cout<<"Zona de entrega: ";
@@ -238,22 +246,23 @@ void cargar_pedidos(int m[][4])
 
 bool buscar_repartidor(int zona, int nro_vehiculo) // Verifica que haya por lo menos un repartidor en la zona y vehiculo pedido
 {
+    FILE*f;
     switch (nro_vehiculo)
     {
         case 0:
-            FILE*f = fopen("RepMoto.dat", "rb");
+            f = fopen("RepMoto.dat", "rb");
             break;
         
         case 1:
-            FILE*f = fopen("RepAuto.dat", "rb");
+            f = fopen("RepAuto.dat", "rb");
             break;
         
         case 2:
-            FILE*f = fopen("RepCamioneta.dat", "rb");
+            f = fopen("RepCamioneta.dat", "rb");
             break;
         
         case 3:
-            FILE*f = fopen("RepCamion.dat", "rb");
+            f = fopen("RepCamion.dat", "rb");
             break;
     }
     if(f == NULL)
@@ -263,7 +272,7 @@ bool buscar_repartidor(int zona, int nro_vehiculo) // Verifica que haya por lo m
     fclose(f);
 }
 
-bool leer_archivo(FILE*, int zona)
+bool leer_archivo(FILE*f, int zona)
 {
     Arch_rep r;
     fread(&r, sizeof(Arch_rep), 1, f);
@@ -292,14 +301,14 @@ void asignar_pedidos(Cola m[][4], NodoLista *&lista) //vericar que el repartidor
             cout<<"El repartidor no existe."<<endl;
         else
         {
-            ped = deseconlar(m[rep.zona-1][rep.nro_vehiculo-1].pri, m[rep.zona-1][rep.nro_vehiculo-1].ult);
-            if(ped == NULL)
+            if(m[rep.zona-1][rep.nro_vehiculo-1].pri == NULL)
                 cout<<"No hay mas pedidos para la zona "<<rep.zona<<" y el vehiculo "<<traducir_nro_veh(rep.nro_vehiculo)<<endl;
             else
             {
+                ped = desencolar(m[rep.zona-1][rep.nro_vehiculo-1].pri, m[rep.zona-1][rep.nro_vehiculo-1].ult);
                 //crear lista
                 l = buscarInsertar(lista, dni);
-                insertar(l->lista_pedidos);
+                insertar(l->lista_pedidos, ped);
             }
         }
         cout<<"Dni: ";
@@ -307,7 +316,7 @@ void asignar_pedidos(Cola m[][4], NodoLista *&lista) //vericar que el repartidor
     }
 }
 
-Repartidor buscar_dni(int dni) //Funcion que se me occurrio, no estoy seguro si esta bien 
+Repartidor buscar_dni(int dni) // ERROR 
 {
     FILE* f = fopen("RepMoto.dat", "rb");
     Repartidor rep;
@@ -316,19 +325,19 @@ Repartidor buscar_dni(int dni) //Funcion que se me occurrio, no estoy seguro si 
     i++;
     if (rep.nro_vehiculo == -1)
     {
-        FILE* f = fopen("RepAuto.dat", "rb");
+        f = fopen("RepAuto.dat", "rb");
         rep = leer_archivo2(f, dni, i);
         i++;
     }
     else if(rep.nro_vehiculo == -1)
     {
-        FILE* f = fopen("RepCamioneta.dat", "rb");
+        f = fopen("RepCamioneta.dat", "rb");
         rep = leer_archivo2(f, dni, i);
         i++; 
     }
     else if(rep.nro_vehiculo == -1)
     {
-        FILE* f = fopen("RepCamion.dat", "rb");
+        f = fopen("RepCamion.dat", "rb");
         rep = leer_archivo2(f, dni, i);
         i++; 
     }
@@ -363,7 +372,7 @@ Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo)
 string traducir_nro_veh(int nro_vehiculo)
 {
     string n;
-    switch(nro_veh)
+    switch(nro_vehiculo)
     {
         case 0: n="Auto"; break;
         case 1: n="Moto"; break;
@@ -378,15 +387,15 @@ void mostrar_lista(NodoLista*lista)
     NodoSubLista* p;
     while(lista!=NULL)
     {
-        cout<<"Dni: "<<lista->dni<<endl;
+        cout<<"Dni: "<<lista->info<<endl;
         p = lista->lista_pedidos;
         while(p!=NULL)
         {
-            cout<<"Importe "<<p.importe<<endl
-            <<"Domicilio: "<<p.domicilio<<endl>>
-            <<"Zona: "<<p.zona<<endl
-            <<"Volumen: "<<p.volumen<<endl
-            <<"Codigo Comercio: "<<p.cod_comercio<<endl<<endl;
+            cout<<"Importe "<<p->info.importe<<endl
+            <<"Domicilio: "<<p->info.domicilio<<endl
+            <<"Zona: "<<p->info.zona<<endl
+            <<"Volumen: "<<p->info.volumen<<endl
+            <<"Codigo Comercio: "<<p->info.cod_comercio<<endl<<endl;
         }
     }
 }
