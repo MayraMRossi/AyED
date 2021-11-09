@@ -37,6 +37,7 @@ struct Repartidor
     unsigned dni;
     int zona;
     int nro_vehiculo;
+    char nombre[40];
 };
 
 struct NodoSubLista
@@ -45,11 +46,17 @@ struct NodoSubLista
     NodoSubLista *sig;
 };
 
+struct Lista
+{
+    int dni;
+    char nombre[40];
+    NodoSubLista *lista_pedidos;
+}
+
 struct NodoLista
 {
-    int info; //dni
+    Lista info;
     NodoLista *sig;
-    NodoSubLista *lista_pedidos; // la sublista podria ir adentro de un struct que tenga el dni 
 };
 
 int indicar_vehiculo(float vol);
@@ -62,7 +69,7 @@ bool buscar_repartidor(int zona, int nro_vehiculo);
 bool leer_archivo(FILE*f, int zona);
 void asignar_pedidos(Cola m[][4], NodoLista *&lista);
 Repartidor buscar_dni(int dni);
-Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo);
+Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo)
 void insertar(NodoSubLista* &lista, Pedido ped);
 NodoLista *buscarInsertar(NodoLista* &lista, int dni);
 string traducir_nro_veh(int nro_vehiculo);
@@ -190,16 +197,16 @@ void insertar(NodoSubLista* &lista, Pedido ped)
         lista = n;
 }
 
-NodoLista *buscarInsertar(NodoLista* &lista, int dni)
+NodoLista *buscarInsertar(NodoLista* &lista, Lista l)
 {
     NodoLista *l, *ant;
     l = lista;
-    while(l != NULL && l->info < dni)
+    while(l != NULL && l->info.dni < dni)
     {
         ant = l;
         l = l->sig;
     }
-    if(l == NULL || l->info!=dni) 
+    if(l == NULL || l->info.dni!=dni) 
     {
         NodoLista *n = new NodoLista;
         n->info = dni;
@@ -288,15 +295,15 @@ bool leer_archivo(FILE*f, int zona)
 
 void asignar_pedidos(Cola m[][4], NodoLista *&lista) //vericar que el repartidor este en esa zona y vehiculo y en base a eso asignarle un pedido de la cola
 {
-    int dni;
     Repartidor rep;
     Pedido ped;
     NodoLista *l;
+    Lista lis;
     cout<<"Dni: ";
-    cin>>dni;
-    while(dni != 0)
+    cin>>rep.dni;
+    while(rep.dni != 0)
     {
-        rep = buscar_dni(dni);
+        rep = buscar_dni(rep.dni);
         if(rep.nro_vehiculo == -1)
             cout<<"El repartidor no existe."<<endl;
         else
@@ -307,15 +314,17 @@ void asignar_pedidos(Cola m[][4], NodoLista *&lista) //vericar que el repartidor
             {
                 ped = desencolar(m[rep.zona-1][rep.nro_vehiculo-1].pri, m[rep.zona-1][rep.nro_vehiculo-1].ult);
                 //crear lista
-                l = buscarInsertar(lista, dni);
-                insertar(l->lista_pedidos, ped);
+                lis.dni = rep.dni;
+                strcpy(lis.nombre, rep.nombre);
+                l = buscarInsertar(lista, lis);
+                insertar(l->info.lista_pedidos, ped);
             }
         }
         cout<<"Dni: ";
-        cin>>dni;
+        cin>>rep.dni;
     }
 }
-
+/*
 Repartidor buscar_dni(int dni) // ERROR 
 {
     FILE* f = fopen("RepMoto.dat", "rb");
@@ -344,6 +353,31 @@ Repartidor buscar_dni(int dni) // ERROR
     return rep;
     
 }
+*/
+ 
+Repartidor buscar_dni(int dni) 
+{
+    FILE*f1 = fopen("RepMoto.dat", "rb");
+    FILE*f2 = fopen("RepAuto.dat", "rb");
+    FILE*f3 = fopen("RepCamioneta.dat", "rb");
+    FILE*f4 = fopen("RepCamion.dat", "rb");
+    Repartidor rep;
+    
+    rep = leer_archivo2(f1, dni, 0);
+    if (rep.nro_vehiculo == -1)
+        rep = leer_archivo2(f2, dni,1);
+    else if (rep.nro_vehiculo == -1)
+        rep = leer_archivo2(f3, dni, 2);
+    else if (rep.nro_vehiculo == -1)
+        rep = leer_archivo2(f4, dni, 3);
+    
+    fclose(f1);
+    fclose(f2);
+    fclose(f3);
+    fclose(f4);
+
+    return rep;
+}
 
 Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo)
 {
@@ -355,12 +389,12 @@ Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo)
         Repartidor rep;
         fread(&r, sizeof(Arch_rep), 1, f);
         while(!feof(f) && r.dni != dni);
-        {
             fread(&r, sizeof(Arch_rep), 1, f);
-        }
+
         rep.dni = r.dni;
         rep.zona = r.zona;
-        if(!feof(f))
+        strcpy(rep.nombre, r.nombre);
+        if(feof(f))
             rep.nro_vehiculo = nro_vehiculo;
         else
             rep.nro_vehiculo = -1; // si no lo encontro
