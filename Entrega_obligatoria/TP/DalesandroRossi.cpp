@@ -51,7 +51,7 @@ struct Lista
     int dni;
     char nombre[40];
     NodoSubLista *lista_pedidos;
-}
+};
 
 struct NodoLista
 {
@@ -69,9 +69,9 @@ bool buscar_repartidor(int zona, int nro_vehiculo);
 bool leer_archivo(FILE*f, int zona);
 void asignar_pedidos(Cola m[][4], NodoLista *&lista);
 Repartidor buscar_dni(int dni);
-Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo)
+Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo);
 void insertar(NodoSubLista* &lista, Pedido ped);
-NodoLista *buscarInsertar(NodoLista* &lista, int dni);
+NodoLista *buscarInsertar(NodoLista* &lista, Lista lis);
 string traducir_nro_veh(int nro_vehiculo);
 void mostrar_lista(NodoLista*lista);
 
@@ -197,19 +197,19 @@ void insertar(NodoSubLista* &lista, Pedido ped)
         lista = n;
 }
 
-NodoLista *buscarInsertar(NodoLista* &lista, Lista l)
+NodoLista *buscarInsertar(NodoLista* &lista, Lista lis)
 {
     NodoLista *l, *ant;
     l = lista;
-    while(l != NULL && l->info.dni < dni)
+    while(l != NULL && l->info.dni < lis.dni)
     {
         ant = l;
         l = l->sig;
     }
-    if(l == NULL || l->info.dni!=dni) 
+    if(l == NULL || l->info.dni!=lis.dni) 
     {
         NodoLista *n = new NodoLista;
-        n->info = dni;
+        n->info.dni = lis.dni;
         n->sig = l;
         if(l != lista)
             ant->sig = n;
@@ -279,6 +279,53 @@ bool buscar_repartidor(int zona, int nro_vehiculo) // Verifica que haya por lo m
     fclose(f);
 }
 
+/*
+bool buscar_repartidor(int zona, int nro_vehiculo) // Verifica que haya por lo menos un repartidor en la zona y vehiculo pedido
+{
+    bool ret;
+    FILE*f1 = fopen("RepMoto.dat", "rb");
+    FILE*f2 = fopen("RepAuto.dat", "rb");
+    FILE*f3 = fopen("RepCamioneta.dat", "rb");
+    FILE*f4 = fopen("RepCamion.dat", "rb");
+    switch (nro_vehiculo)
+    {
+        case 0:
+            if(f1 == NULL)
+                cout<<"Error."<<endl;
+            else
+                ret = leer_archivo(f1, zona);
+            break;
+        
+        case 1:
+            if(f2 == NULL)
+                cout<<"Error."<<endl;
+            else
+                ret = leer_archivo(f2, zona);
+            break;
+        
+        case 2:
+            if(f3 == NULL)
+                cout<<"Error."<<endl;
+            else
+                ret = leer_archivo(f3, zona);
+            break;
+        
+        case 3:
+            if(f4 == NULL)
+                cout<<"Error."<<endl;
+            else
+                ret = leer_archivo(f4, zona);
+            break;
+    }
+
+    fclose(f1);
+    fclose(f2);
+    fclose(f3);
+    fclose(f4);
+
+    return ret;
+}
+*/
 bool leer_archivo(FILE*f, int zona)
 {
     Arch_rep r;
@@ -354,7 +401,7 @@ Repartidor buscar_dni(int dni) // ERROR
     
 }
 */
- 
+
 Repartidor buscar_dni(int dni) 
 {
     FILE*f1 = fopen("RepMoto.dat", "rb");
@@ -363,13 +410,24 @@ Repartidor buscar_dni(int dni)
     FILE*f4 = fopen("RepCamion.dat", "rb");
     Repartidor rep;
     
+    cout<<"Iniciando busqueda del DNI: "<<endl;
     rep = leer_archivo2(f1, dni, 0);
+    cout<<"Leyo arch 1"<<endl;
     if (rep.nro_vehiculo == -1)
+    {
         rep = leer_archivo2(f2, dni,1);
+        cout<<"Leyo arch 2"<<endl;
+    }
     else if (rep.nro_vehiculo == -1)
+    {
         rep = leer_archivo2(f3, dni, 2);
+        cout<<"Leyo arch 3"<<endl;
+    }
     else if (rep.nro_vehiculo == -1)
+    {
         rep = leer_archivo2(f4, dni, 3);
+        cout<<"Leyo arch 4"<<endl;
+    }
     
     fclose(f1);
     fclose(f2);
@@ -388,19 +446,19 @@ Repartidor leer_archivo2(FILE*f, int dni, int nro_vehiculo)
         Arch_rep r;
         Repartidor rep;
         fread(&r, sizeof(Arch_rep), 1, f);
-        while(!feof(f) && r.dni != dni);
+        while(!feof(f) && r.dni != dni)
             fread(&r, sizeof(Arch_rep), 1, f);
 
+        cout<<"termino de leer el arch "<<nro_vehiculo+1<<endl;
         rep.dni = r.dni;
         rep.zona = r.zona;
         strcpy(rep.nombre, r.nombre);
-        if(feof(f))
+        if(!feof(f))
             rep.nro_vehiculo = nro_vehiculo;
         else
             rep.nro_vehiculo = -1; // si no lo encontro
         return rep;
     }
-    fclose(f);
 }
 
 string traducir_nro_veh(int nro_vehiculo)
@@ -421,8 +479,9 @@ void mostrar_lista(NodoLista*lista)
     NodoSubLista* p;
     while(lista!=NULL)
     {
-        cout<<"Dni: "<<lista->info<<endl;
-        p = lista->lista_pedidos;
+        cout<<"Dni: "<<lista->info.dni<<endl;
+        cout<<"Nombre: "<<lista->info.nombre<<endl;
+        p = lista->info.lista_pedidos;
         while(p!=NULL)
         {
             cout<<"Importe "<<p->info.importe<<endl
@@ -431,5 +490,6 @@ void mostrar_lista(NodoLista*lista)
             <<"Volumen: "<<p->info.volumen<<endl
             <<"Codigo Comercio: "<<p->info.cod_comercio<<endl<<endl;
         }
+        lista = lista->sig;
     }
 }
