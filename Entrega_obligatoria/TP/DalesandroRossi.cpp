@@ -119,6 +119,7 @@ int main()
                 mostrar_lista(lista_repartidores);
                 break;
             case 4:
+                cout<<endl;
                 listar_arbol(arbol_comercios);
                 break;
             default:
@@ -315,7 +316,7 @@ void asignar_pedidos(Cola m[][4], NodoLista *&lista, NodoArbol *&arbol) //verica
     Repartidor rep;
     Pedido ped;
     int cont;
-    cout<<endl<<"Dni: ";
+    cout<<endl<<"Dni (0 para salir): ";
     cin>>rep.dni;
     while(rep.dni != 0)
     {
@@ -410,8 +411,8 @@ string traducir_nro_veh(int nro_vehiculo)
     string n;
     switch(nro_vehiculo)
     {
-        case 0: n="Auto"; break;
-        case 1: n="Moto"; break;
+        case 0: n="Moto"; break;
+        case 1: n="Auto"; break;
         case 2: n="Camioneta"; break;
         case 3: n="Camion"; break;
     }
@@ -424,7 +425,8 @@ void mostrar_lista(NodoLista*lista)
     while(lista!=NULL)
     {
         cout<<endl<<"Dni: "<<lista->info.dni<<endl;
-        cout<<"Nombre: "<<lista->info.nombre<<endl;
+        cout<<"Nombre: "<<lista->info.nombre<<endl<<endl;
+        cout<<"PEDIDOS: "<<endl<<endl;
         p = lista->info.lista_pedidos;
         while(p!=NULL)
         {
@@ -445,7 +447,7 @@ void listar_arbol(NodoArbol*raiz)
     {
         listar_arbol(raiz->izq);
         cout<<"Cod comercio: "<<raiz->info.cod_comercio<<endl;
-        cout<<"Cantidad de entregas: "<<raiz->info.cant_entregas<<endl;
+        cout<<"Cantidad de entregas: "<<raiz->info.cant_entregas<<endl<<endl;
         listar_arbol(raiz->der);
     }
 }
@@ -455,7 +457,7 @@ void buscar_insertar_arbol(NodoArbol*&raiz, int cod_comercio)
     NodoArbol *r = raiz;
     while(r!=NULL && r->info.cod_comercio != cod_comercio)
     {
-        if(r->info.cod_comercio < cod_comercio)
+        if(r->info.cod_comercio > cod_comercio)
             r = r->izq;
         else
             r = r->der;
@@ -491,3 +493,4 @@ void buscar_insertar_arbol(NodoArbol*&raiz, int cod_comercio)
     else
         r->info.cant_entregas++;
 }
+
