@@ -97,7 +97,7 @@ void cargar_lis2(NodoAplic *lista)
         insertar2 (lis1,lis2);
         lis1=lis1->sig;
     }
-    completar(lis2);
+    completar(lis1,lis2);
 
 
 }
@@ -144,7 +144,13 @@ void insertar2(NodoAplic*lista1,NodoMenor*&lista2)
             lista2=n;
 }
 
-void completar (NodoMenor *&lista2)
+void completar (NodoAplic*lista1,NodoMenor*&lista2)
 {
-    
+    while(lista1->sig != NULL )
+    {
+        
+
+
+        lis1=lis1->sig;
+    }
 }
