@@ -30,9 +30,9 @@ struct Menor
 {
     int dni;
     Fecha fecha_1;
-    int centro;
-    Fecha fecha2;
-    int centro;
+    int centro_1;
+    Fecha fecha_2;
+    int centro_2;
 }
 
 struct NodoMenor
@@ -120,20 +120,25 @@ void insertar(NodoAplic*&lista,Aplic pers)
 
 void insertar2(NodoAplic*lista1,NodoMenor*&lista2)
 {
-    NodoMenor *n,*r,*ant;
-    n=new NodoMenor;
-    n->info->dni=lista1->info->dni;
-    r=lista;
-    while(r!=NULL && r->info.dosis>alu.dosis) //ordeno esta nueva lista de mayor a menor (1ero dosis 2 y luego dosis 1)
-    {
-        ant=r;
-        r=r->sig;
-    }
-    n->sig=r;
-    if(r!=lista2)
-        ant->sig=n;
-    else
-        lista2=n;
+    NodoAplic *n,*r,*ant;
+    n=new NodoAplic = NULL;
+
+
+        n->info->dni=lista1->info->dni;
+        n->info->fecha2=lista1->info->fecha;
+        n->info->centro2=lista1->info->centro;
+        
+        while(r->info.dosis>pers.dosis) //ordeno esta nueva lista de mayor a menor (1ero dosis 2 y luego dosis 1)
+        {
+            ant=r;
+            r=r->sig;
+        }
+        n->sig=r;
+        if(r!=lista)
+            ant->sig=n;
+        else
+            lista=n;
+
 }
 
 
