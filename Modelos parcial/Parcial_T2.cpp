@@ -50,14 +50,14 @@ void cargarMenores ()
 
 NodoAplic *cargar_lis1()
 {
- FILE*f;
-    f = fopen("Aplicaciones.dat", "rb");
+
+    FILE*f = fopen("Aplicaciones.dat", "rb");
     if(f != NULL)
     {
         Aplic pers_lis,pers_arch;
 
         fread(&pers_arch, sizeof(Aplic), 1, f);
-        if(pers_arch.edad>18)
+        if(pers_arch.edad<18)
         {
             pers_lis=pers_arch;
             NodoAplic *lis1 = NULL;
@@ -67,17 +67,14 @@ NodoAplic *cargar_lis1()
         while(!feof(f))
         {
             fread(&pers_arch, sizeof(Aplic), 1, f);
-            if(pers_arch.edad>18)
+            if(pers_arch.edad<18)
             {
                 pers_lis=pers_arch;
                 insertar(lis1,pers_lis);
             } 
         }
     }
-    else  
-    {
-        cout<<"Error."<<endl;
-    }
+ 
     fclose(f);
 
     return lis1;
