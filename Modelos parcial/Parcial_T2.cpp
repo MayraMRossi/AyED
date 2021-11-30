@@ -92,11 +92,14 @@ void cargar_lis2(NodoAplic *lista)
     insertar2 (lis1,lis2);
     lis1=lis1->sig;
 
-    while(lis1->sig != NULL && lis1.dosis<2)
+    while(lis1->sig != NULL && lis1.dosis>2)
     {
         insertar2 (lis1,lis2);
         lis1=lis1->sig;
     }
+    completar(lis2);
+
+
 }
 
 
@@ -120,7 +123,7 @@ void insertar(NodoAplic*&lista,Aplic pers)
 
 void insertar2(NodoAplic*lista1,NodoMenor*&lista2)
 {
-    NodoAplic *n,*r,*ant;
+    NodoMenor *n,*r,*ant;
     n=new NodoAplic = NULL;
 
 
@@ -128,17 +131,20 @@ void insertar2(NodoAplic*lista1,NodoMenor*&lista2)
         n->info->fecha2=lista1->info->fecha;
         n->info->centro2=lista1->info->centro;
         
-        while(r->info.dosis>pers.dosis) //ordeno esta nueva lista de mayor a menor (1ero dosis 2 y luego dosis 1)
+        r=lista2;
+        while(r!=NULL && r->info.dni<lista2->info->dni) //ordeno por DNI
         {
             ant=r;
             r=r->sig;
         }
         n->sig=r;
-        if(r!=lista)
+        if(r!=lista2)
             ant->sig=n;
         else
-            lista=n;
-
+            lista2=n;
 }
 
-
+void completar (NodoMenor *&lista2)
+{
+    
+}
