@@ -144,13 +144,18 @@ void insertar2(NodoAplic*lista1,NodoMenor*&lista2)
             lista2=n;
 }
 
-void completar (NodoAplic*lista1,NodoMenor*&lista2)
+void completar (NodoAplic*lista1,NodoMenor*lista2)
 {
     while(lista1->sig != NULL )
     {
-        
-
-
-        lis1=lis1->sig;
+        NodoMenor*r=lista2;
+        while(r!=NULL && r->info.dni==lista1->info->dni)
+            {
+                r->info->fecha_1=lista1->info->fecha;
+                r->info->centro_1=lista1->info->centro;   
+                r=r->sig;
+            }
+        lista1=lista1->sig;
     }
 }
+
