@@ -102,9 +102,6 @@ void mostrarListado (Nodo_becas *listaBec,Nodo_estudiantes *listaEst)
             listaEst = ListaEst->sig;
             
         }
-        
         listaBec = listaBec->sig;
     }
-
-
 }
