@@ -12,11 +12,18 @@ struct Estudiantes
     float Ingreso_prom;
 };
 
+struct Nodo_estudiantes
+{
+    Estudiantes info;
+    Nodo_estudiantes *sig;
+};
+
 struct Becas
 {
     unsigned Cod_beca;
     string Nombre;
     unsigned Cupo_max;
+    Nodo_estudiantes *sublista;
 };
 
 struct Nodo_becas
@@ -25,11 +32,7 @@ struct Nodo_becas
     Nodo_becas *sig;
 };
 
-struct Nodo_estudiantes
-{
-    Estudiantes info;
-    Nodo_estudiantes *sig;
-};
+
 
 
 Nodo_becas *ingresar_becas ()
@@ -59,46 +62,54 @@ Nodo_becas *ingresar_becas ()
 
 
 
-Nodo_estudiantes *organizarInscriptos()
+void organizarInscriptos(Nodo_becas *listaBec)
 {
     
     Estudiantes est;
     Nodo_estudiantes *listaEst = NULL;
-    //Cargo el archivo en una lista simple
+    //armo una lista con el archivo 
     FILE*f = fopen("Solicitantes.dat", "rb");
-    if(f != NULL)
-    {      
-        fread(&est, sizeof(Estudiantes), 1, f);  
-        while(!feof(f))
-        {
-            
-            insertar(listaEst, est); //función basica "insertar" ordenado de menor a mayor según el código de beca con la lista pasada como parametro por referencia
-            fread(&est, sizeof(Estudiantes), 1, f);
+        if(f != NULL)
+        {      
+            fread(&est, sizeof(Estudiantes), 1, f);  
+            while(!feof(f) )
+            {
+                //Cargo el archivo en una lista con sublistas
+                insertarSub(listaBec, est); 
+                fread(&est, sizeof(Estudiantes), 1, f);
+            }
+            fclose(f);
         }
-        fclose(f);
-    }
+    
+}
 
-    return listaEst;
+void insertarSub(Nodo_becas *listaBec,Estudiantes est)
+{
+    
+    Nodo_becas *l = buscarMejor(listaBec,est.Cod_beca);//función básica buscar mejorada que me devuelve la posición de la beca con el mismo codigo de beca
+    insertar(l->info.sublista, est);//función básica "insertar" ordenado de menor a mayor según el ingreso promedio con el puntero pasado por referencia
+ 
 }
 
 
 
 
-void mostrarListado (Nodo_becas *listaBec,Nodo_estudiantes *listaEst)
+void mostrarListado (Nodo_becas *listaBec)
 {
+
     
     while (listaBec != NULL)
     {   
         int cont=0;
         cout << "Para la beca de codigo " << listaBec->info.Cod_beca << " y nombre " << listaBec->info.Nombre << " tiene asignados los siguientes alumnos:  "<<endl;
         
-        while(listaEst !=NULL && listaEst->info.Cod_beca == listaBec->info.Cod_beca)
+        while(listaBec->info.sublista !=NULL && listaBec->info->sublista.Cod_beca == listaBec->info.Cod_beca)
         {
-            if(cont<listaBec->info->Cupo_max)
+            if(cont<listaBec->info.Cupo_max)
                 cout << "Legajo: " << listaEst->info.legajo << " Nombre y Apellido: " << listaEst->info.apellido_nombre;
 
             cont++;
-            listaEst = listaEst->sig;
+            listaBec->info.sublista = listaBec->info->sublista.sig;
             
         }
         listaBec = listaBec->sig;
