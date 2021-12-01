@@ -95,7 +95,7 @@ void mostrarListado (Nodo_becas *listaBec,Nodo_estudiantes *listaEst)
         
         while(listaEst !=NULL && listaEst->info->Cod_beca == listaBec->info->Cod_beca)
         {
-            if(cont<listaBec->info->Cupo_max)
+            if(cont<=listaBec->info->Cupo_max)
                 cout << "Legajo: " << ListaEst->info->legajo << " Nombre y Apellido: " << ListaEst->info->apellido_nombre;
 
             cont++;
