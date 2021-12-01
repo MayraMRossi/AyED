@@ -41,7 +41,7 @@ Nodo_becas ingresar_becas ()
     cout<<"Ingrese el codigo de la beca: (0 para salir)"<<endl;
     cin >> alu.Cod_beca >> endl;
 
-    while(cod != 0)
+    while(alu.Cod_beca!= 0)
     {
         cout << "Ingrese el nombre de la beca: " << endl;
         cin >> alu.nombre >> endl;
@@ -68,11 +68,13 @@ Nodo_estudiantes organizarInscriptos()
     //Cargo el archivo en una lista simple
     FILE*f = fopen("Solicitantes.dat", "rb");
     if(f != NULL)
-    {        
+    {      
+        fread(&est, sizeof(Estudiantes), 1, f);  
         while(!feof(f))
         {
-            fread(&est, sizeof(Estudiantes), 1, f);
+            
             insertar(listaEst, est); //función basica "insertar" ordenado de menor a mayor según el código de beca con la lista pasada como parametro por referencia
+            fread(&est, sizeof(Estudiantes), 1, f);
         }
         fclose(f);
     }
