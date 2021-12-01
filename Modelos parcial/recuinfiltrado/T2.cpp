@@ -90,12 +90,12 @@ void mostrarListado (Nodo_becas *listaBec,Nodo_estudiantes *listaEst)
     while (listaBec != NULL)
     {   
         int cont=0;
-        cout << "Para la beca de código " << listaBec->info->Cod_beca << " y nombre " << listaBec->info->Nombre << " tiene asignados los siguientes alumnos:  "
+        cout << "Para la beca de código " << listaBec->info.Cod_beca << " y nombre " << listaBec->info.Nombre << " tiene asignados los siguientes alumnos:  "
         
-        while(listaEst !=NULL && listaEst->info->Cod_beca == listaBec->info->Cod_beca)
+        while(listaEst !=NULL && listaEst->info.Cod_beca == listaBec->info.Cod_beca)
         {
             if(cont<=listaBec->info->Cupo_max)
-                cout << "Legajo: " << ListaEst->info->legajo << " Nombre y Apellido: " << ListaEst->info->apellido_nombre;
+                cout << "Legajo: " << ListaEst->info.legajo << " Nombre y Apellido: " << ListaEst->info.apellido_nombre;
 
             cont++;
             listaEst = ListaEst->sig;
